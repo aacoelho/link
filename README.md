@@ -25,7 +25,7 @@ npm i --save-dev @editorjs/link
 Include module at your application
 
 ```javascript
-const LinkTool = require('@editorjs/link');
+const LinkTool = require("@editorjs/link");
 ```
 
 ### Download to your project's source dir
@@ -67,34 +67,34 @@ const editor = EditorJS({
 
 Link Tool supports these configuration parameters:
 
-| Field    | Type        | Description                                    |
-| ---------|-------------|------------------------------------------------|
-| endpoint | `string`    | **Required:** the endpoint for link data fetching. |
-| headers | `object`    | **Optional:** the headers used in the GET request. |
+| Field    | Type     | Description                                        |
+| -------- | -------- | -------------------------------------------------- |
+| endpoint | `string` | **Required:** the endpoint for link data fetching. |
+| headers  | `object` | **Optional:** the headers used in the GET request. |
 
 ## Output data
 
 This Tool returns `data` with following format
 
-| Field          | Type      | Description                     |
-| -------------- | --------- | ------------------------------- |
-| link           | `string`  | Pasted link's url               |
-| meta           | `object`  | Fetched link's data. Any data got from the backend. Currently, the plugin's design supports the 'title', 'image', and 'description' fields. |
+| Field | Type     | Description                                                                                                                                 |
+| ----- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| link  | `string` | Pasted link's url                                                                                                                           |
+| meta  | `object` | Fetched link's data. Any data got from the backend. Currently, the plugin's design supports the 'title', 'image', and 'description' fields. |
 
 ```json
 {
-    "type" : "linkTool",
-    "data" : {
-        "link" : "https://codex.so",
-        "meta" : {
-            "title" : "CodeX Team",
-            "site_name" : "CodeX",
-            "description" : "Club of web-development, design and marketing. We build team learning how to build full-valued projects on the world market.",
-            "image" : {
-                "url" : "https://codex.so/public/app/img/meta_img.png"
-            }
-        }
+  "type": "linkTool",
+  "data": {
+    "link": "https://codex.so",
+    "meta": {
+      "title": "CodeX Team",
+      "site_name": "CodeX",
+      "description": "Club of web-development, design and marketing. We build team learning how to build full-valued projects on the world market.",
+      "image": {
+        "url": "https://codex.so/public/app/img/meta_img.png"
+      }
     }
+  }
 }
 ```
 
@@ -107,11 +107,11 @@ Backend response **should** cover following format:
 
 ```json5
 {
-    "success" : 1,
-    "link": "https://codex.so", // Optionally return a link to set the hyperlink URL
-    "meta": {
-        // ... any fields you want
-    }
+  success: 1,
+  link: "https://codex.so", // Optionally return a link to set the hyperlink URL
+  meta: {
+    // ... any fields you want
+  },
 }
 ```
 
@@ -125,14 +125,14 @@ Currently, the plugin's design supports the 'title', 'image', and 'description' 
 
 ```json5
 {
-    "success" : 1,
-    "meta": {
-        "title" : "CodeX Team",
-        "description" : "Club of web-development, design and marketing. We build team learning how to build full-valued projects on the world market.",
-        "image" : {
-            "url" : "https://codex.so/public/app/img/meta_img.png"
-        }
-    }
+  success: 1,
+  meta: {
+    title: "CodeX Team",
+    description: "Club of web-development, design and marketing. We build team learning how to build full-valued projects on the world market.",
+    image: {
+      url: "https://codex.so/public/app/img/meta_img.png",
+    },
+  },
 }
 ```
 
@@ -144,6 +144,18 @@ Also, it can contain any additional fields you want to store.
 
 CodeX is a team of digital specialists around the world interested in building high-quality open source products on a global market. We are [open](https://codex.so/join) for young people who want to constantly improve their skills and grow professionally with experiments in cutting-edge technologies.
 
-| 🌐 | Join  👋  | Twitter | Instagram |
-| -- | -- | -- | -- |
-| [codex.so](https://codex.so) | [codex.so/join](https://codex.so/join) |[@codex_team](http://twitter.com/codex_team) | [@codex_team](http://instagram.com/codex_team/) |
+| 🌐                           | Join 👋                                | Twitter                                      | Instagram                                       |
+| ---------------------------- | -------------------------------------- | -------------------------------------------- | ----------------------------------------------- |
+| [codex.so](https://codex.so) | [codex.so/join](https://codex.so/join) | [@codex_team](http://twitter.com/codex_team) | [@codex_team](http://instagram.com/codex_team/) |
+
+# Development Mode
+
+1. Run dev mode
+   ```
+   npm run build:dev
+   ```
+2. Run sample HTTP server for accept fetched links data
+   [!] Use it only for debugging purposes
+   1. `$ node dev/server.js`
+   2. set 'endpoint' at the Link Tools 'config' in `example-dev.html`
+   3. `endpoint : 'http://localhost:8008/fetchUrl'`

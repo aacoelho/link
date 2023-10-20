@@ -267,7 +267,7 @@ export default class LinkTool {
       contentEditable: !this.readOnly,
     });
 
-    this.nodes.input.dataset.placeholder = this.api.i18n.t('Link');
+    this.nodes.input.dataset.placeholder = this.api.i18n.t('Paste or type URL and press enter to add it');
 
     if (!this.readOnly) {
       this.nodes.input.addEventListener('paste', (event) => {

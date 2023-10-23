@@ -102,6 +102,7 @@ export default class LinkTool {
       wrapper: null,
       container: null,
       progress: null,
+      button: null,
       input: null,
       inputHolder: null,
       linkContent: null,
@@ -248,6 +249,7 @@ export default class LinkTool {
       linkTitle: 'link-tool__title',
       linkDescription: 'link-tool__description',
       linkText: 'link-tool__anchor',
+      button: 'link-tool__button',
       progress: 'link-tool__progress',
       progressLoading: 'link-tool__progress--loading',
       progressLoaded: 'link-tool__progress--loaded',
@@ -266,10 +268,15 @@ export default class LinkTool {
     this.nodes.input = this.make('div', [this.CSS.input, this.CSS.inputEl], {
       contentEditable: !this.readOnly,
     });
+    this.nodes.button = this.make('button', this.CSS.button);
+    this.nodes.button.innerHTML = this.api.i18n.t('Add weblink');
 
     this.nodes.input.dataset.placeholder = this.api.i18n.t('Paste or type URL and press enter to add it');
 
     if (!this.readOnly) {
+      this.nodes.button.addEventListener('click', (event) => {
+        this.startFetching(event);
+      });
       this.nodes.input.addEventListener('paste', (event) => {
         this.startFetching(event);
       });
@@ -296,6 +303,7 @@ export default class LinkTool {
 
     inputHolder.appendChild(this.nodes.progress);
     inputHolder.appendChild(this.nodes.input);
+    inputHolder.appendChild(this.nodes.button);
 
     return inputHolder;
   }
@@ -312,6 +320,7 @@ export default class LinkTool {
       url = (event.clipboardData || window.clipboardData).getData('text');
     }
 
+    this.nodes.button.style.display = "none";
     this.removeErrorStyle();
     this.fetchLinkData(url);
   }
@@ -413,6 +422,8 @@ export default class LinkTool {
   showInputHolder() {
     this.nodes.state = LinkTool.STATE.EDIT;
     this.nodes.container.appendChild(this.nodes.inputHolder);
+    this.nodes.progress.classList.remove(this.CSS.progressLoaded);
+    this.nodes.button.style.display = "inline-flex";
   }
 
 /**
@@ -522,6 +533,7 @@ export default class LinkTool {
     });
 
     this.applyErrorStyle();
+    this.nodes.button.style.display = "inline-flex";
   }
 
   /**

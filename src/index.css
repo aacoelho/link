@@ -189,6 +189,13 @@
     border: 0 !important;
     padding: 0 !important;
   }
+
+  &--loading,
+  &--loaded {
+    .link-tool__button {
+      display: none;
+    }
+  }
 }
 
 /* Editor.js */

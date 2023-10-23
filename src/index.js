@@ -142,7 +142,7 @@ export default class LinkTool {
       this.nodes.container.appendChild(this.nodes.linkContent);
       this.showLinkPreview(this.data.meta);
     } else {
-      this.nodes.container.appendChild(this.nodes.inputHolder);
+      this.showInputHolder();
     }
 
     this.nodes.wrapper.appendChild(this.nodes.container);
@@ -240,6 +240,11 @@ export default class LinkTool {
        * Tool's classes
        */
       container: 'link-tool',
+      containerLoading: 'link-tool--loading',
+      containerLoaded: 'link-tool--loaded',
+      containerEdit: 'link-tool--edit',
+      containerView: 'link-tool--view',
+      containerError: 'link-tool--error',
       inputEl: 'link-tool__input',
       inputHolder: 'link-tool__input-holder',
       inputError: 'link-tool__input-holder--error',
@@ -320,7 +325,6 @@ export default class LinkTool {
       url = (event.clipboardData || window.clipboardData).getData('text');
     }
 
-    this.nodes.button.style.display = "none";
     this.removeErrorStyle();
     this.fetchLinkData(url);
   }
@@ -329,6 +333,7 @@ export default class LinkTool {
    * If previous link data fetching failed, remove error styles
    */
   removeErrorStyle() {
+    this.nodes.container.classList.remove(this.CSS.containerError);
     this.nodes.inputHolder.classList.remove(this.CSS.inputError);
     this.nodes.inputHolder.insertBefore(this.nodes.progress, this.nodes.input);
   }
@@ -382,6 +387,8 @@ export default class LinkTool {
   showLinkPreview({ image, title, description }) {
     this.nodes.state = LinkTool.STATE.VIEW;
     this.nodes.container.appendChild(this.nodes.linkContent);
+    this.nodes.container.classList.add(this.CSS.containerView);
+    this.nodes.container.classList.remove(this.CSS.containerEdit);
 
     if (image && image.url) {
       this.nodes.linkImage.style.backgroundImage = 'url(' + image.url + ')';
@@ -422,8 +429,10 @@ export default class LinkTool {
   showInputHolder() {
     this.nodes.state = LinkTool.STATE.EDIT;
     this.nodes.container.appendChild(this.nodes.inputHolder);
+    this.nodes.container.classList.remove(this.CSS.containerLoaded);
     this.nodes.progress.classList.remove(this.CSS.progressLoaded);
-    this.nodes.button.style.display = "inline-flex";
+    this.nodes.container.classList.remove(this.CSS.containerView);
+    this.nodes.container.classList.add(this.CSS.containerEdit);
   }
 
 /**
@@ -437,6 +446,7 @@ export default class LinkTool {
    * Show loading progress bar
    */
   showProgress() {
+    this.nodes.container.classList.add(this.CSS.containerLoading);
     this.nodes.progress.classList.add(this.CSS.progressLoading);
   }
 
@@ -447,7 +457,9 @@ export default class LinkTool {
    */
   hideProgress() {
     return new Promise((resolve) => {
+      this.nodes.container.classList.remove(this.CSS.containerLoading);
       this.nodes.progress.classList.remove(this.CSS.progressLoading);
+      this.nodes.container.classList.add(this.CSS.containerLoaded);
       this.nodes.progress.classList.add(this.CSS.progressLoaded);
 
       setTimeout(resolve, 500);
@@ -458,6 +470,8 @@ export default class LinkTool {
    * If data fetching failed, set input error style
    */
   applyErrorStyle() {
+    this.nodes.container.classList.add(this.CSS.containerError);
+    this.nodes.container.classList.remove(this.CSS.containerLoading);
     this.nodes.inputHolder.classList.add(this.CSS.inputError);
     this.nodes.progress.remove();
   }
@@ -533,7 +547,6 @@ export default class LinkTool {
     });
 
     this.applyErrorStyle();
-    this.nodes.button.style.display = "inline-flex";
   }
 
   /**

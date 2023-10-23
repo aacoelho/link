@@ -106,6 +106,7 @@ export default class LinkTool {
       input: null,
       inputHolder: null,
       linkContent: null,
+      linkDetails: null,
       linkImage: null,
       linkTitle: null,
       linkDescription: null,
@@ -250,6 +251,7 @@ export default class LinkTool {
       inputError: 'link-tool__input-holder--error',
       linkContent: 'link-tool__content',
       linkContentRendered: 'link-tool__content--rendered',
+      linkDetails: 'link-tool__details',
       linkImage: 'link-tool__image',
       linkTitle: 'link-tool__title',
       linkDescription: 'link-tool__description',
@@ -371,10 +373,11 @@ export default class LinkTool {
       rel: 'nofollow noindex noreferrer',
     });
 
-    this.nodes.linkImage = this.make('div', this.CSS.linkImage);
+    this.nodes.linkDetails = this.make('div', this.CSS.linkDetails);
     this.nodes.linkTitle = this.make('div', this.CSS.linkTitle);
     this.nodes.linkDescription = this.make('p', this.CSS.linkDescription);
     this.nodes.linkText = this.make('span', this.CSS.linkText);
+    this.nodes.linkImage = this.make('div', this.CSS.linkImage);
 
     return holder;
   }
@@ -390,29 +393,31 @@ export default class LinkTool {
     this.nodes.container.classList.remove(this.CSS.containerEdit);
     this.nodes.container.classList.add(this.CSS.containerView);
 
-    if (image && image.url) {
-      this.nodes.linkImage.style.backgroundImage = 'url(' + image.url + ')';
-      this.nodes.linkContent.appendChild(this.nodes.linkImage);
-    }
+    this.nodes.linkContent.appendChild(this.nodes.linkDetails);
 
     if (title) {
       this.nodes.linkTitle.textContent = title;
-      this.nodes.linkContent.appendChild(this.nodes.linkTitle);
+      this.nodes.linkDetails.appendChild(this.nodes.linkTitle);
     }
 
     if (description) {
       this.nodes.linkDescription.textContent = description;
-      this.nodes.linkContent.appendChild(this.nodes.linkDescription);
+      this.nodes.linkDetails.appendChild(this.nodes.linkDescription);
     }
 
     this.nodes.linkContent.classList.add(this.CSS.linkContentRendered);
     this.nodes.linkContent.setAttribute('href', this.data.link);
-    this.nodes.linkContent.appendChild(this.nodes.linkText);
+    this.nodes.linkDetails.appendChild(this.nodes.linkText);
 
     try {
       this.nodes.linkText.textContent = (new URL(this.data.link)).hostname;
     } catch (e) {
       this.nodes.linkText.textContent = this.data.link;
+    }
+
+    if (image && image.url) {
+      this.nodes.linkImage.style.backgroundImage = 'url(' + image.url + ')';
+      this.nodes.linkContent.appendChild(this.nodes.linkImage);
     }
   }
 

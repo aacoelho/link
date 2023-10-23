@@ -18,7 +18,7 @@
     color: #2d3640;
     line-height: 1.3;
     height: 40px;
-    border: 1px solid #d3dde6;
+    border: 1px solid #d3dce6;
     transition: all 200ms ease-out;
 
     &:hover,
@@ -82,7 +82,9 @@
     align-items: center;
     font-family: "Roboto", sans-serif;
 
-    transition: background-color 200ms ease-out, border-color 200ms ease-out,
+    transition:
+      background-color 200ms ease-out,
+      border-color 200ms ease-out,
       color 200ms ease-out;
 
     &:hover {
@@ -122,12 +124,16 @@
   }
 
   &__content {
-    display: block;
-    padding: 25px;
-    border-radius: 2px;
-    box-shadow: 0 0 0 2px #fff;
     color: initial !important;
     text-decoration: none !important;
+    border: 1px solid #d3dce6;
+    border-radius: 6px;
+    padding: 24px 24px 24px 32px;
+    margin: 0 0 1em;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
 
     &::after {
       content: "";
@@ -136,58 +142,42 @@
     }
 
     &--rendered {
-      background: #fff;
-      border: 1px solid rgba(201, 201, 204, 0.48);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      border-radius: 6px;
       will-change: filter;
       animation: link-in 450ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
-
-      &:hover {
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
-      }
     }
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #2d3640;
+    margin-bottom: 12px;
+  }
+
+  &__description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #2d3640;
+    margin-bottom: 24px;
+  }
+
+  &__anchor {
+    font-size: 14px;
+    line-height: 1.1;
+    color: #5c6b7a;
+    margin: 0;
   }
 
   &__image {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0 0 0 30px;
-    width: 65px;
-    height: 65px;
-    border-radius: 3px;
-    float: right;
-  }
-
-  &__title {
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.5em;
-    margin: 0 0 10px 0;
-
-    + ^&__anchor {
-      margin-top: 25px;
-    }
-  }
-
-  &__description {
-    margin: 0 0 20px 0;
-    font-size: 15px;
-    line-height: 1.55em;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  &__anchor {
-    display: block;
-    font-size: 15px;
-    line-height: 1em;
-    color: #888 !important;
-    border: 0 !important;
-    padding: 0 !important;
+    margin-left: 48px;
+    width: 100%;
+    height: 64px;
+    max-width: 64px;
+    border-radius: 4px;
   }
 
   &--loading,
@@ -199,10 +189,7 @@
 }
 
 /* Editor.js */
-#editorjs
-  .ce-toolbar
-  .ce-settings
-  .ce-popover-item.ce-popover-item--active[data-item-name="edit-url"] {
+#editorjs .ce-toolbar .ce-settings .ce-popover-item.ce-popover-item--active[data-item-name="edit-url"] {
   display: none;
 }
 

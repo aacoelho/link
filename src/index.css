@@ -132,6 +132,14 @@
   }
 }
 
+/* Editor.js */
+#editorjs
+  .ce-toolbar
+  .ce-settings
+  .ce-popover-item.ce-popover-item--active[data-item-name="edit-url"] {
+  display: none;
+}
+
 @keyframes link-in {
   from {
     filter: blur(5px);

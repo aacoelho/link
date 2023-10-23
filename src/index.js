@@ -67,17 +67,17 @@ export default class LinkTool {
     return true;
   }
 
-    /**
-     *
-     * @returns {{EDIT: number, VIEW: number}}
-     * @constructor
-     */
-    static get STATE() {
-      return {
-          EDIT:0,
-          VIEW:1
-      };
-    }
+  /**
+   *
+   * @returns {{EDIT: number, VIEW: number}}
+   * @class
+   */
+  static get STATE() {
+    return {
+      EDIT: 0,
+      VIEW: 1,
+    };
+  }
 
   /**
    * @param {object} options - Tool constructor options fot from Editor.js
@@ -111,7 +111,7 @@ export default class LinkTool {
       linkTitle: null,
       linkDescription: null,
       linkText: null,
-      state: LinkTool.STATE.EDIT
+      state: LinkTool.STATE.EDIT,
     };
 
     this._data = {
@@ -154,7 +154,7 @@ export default class LinkTool {
   /**
    * Create Block's settings block
    *
-   * @returns {array}
+   * @returns {Array}
    */
   renderSettings() {
     const edit = {
@@ -168,10 +168,15 @@ export default class LinkTool {
       },
     };
 
-    return [edit];
+    return [ edit ];
   }
 
-  changeState(state){
+  /**
+   * Update state
+   *
+   * @param {number} state - state
+   */
+  changeState(state) {
     switch (state) {
       case LinkTool.STATE.EDIT:
         this.hideLinkPreview();
@@ -440,7 +445,7 @@ export default class LinkTool {
     this.nodes.progress.classList.remove(this.CSS.progressLoaded);
   }
 
-/**
+  /**
    * Remove input holder
    */
   hideInputHolder() {

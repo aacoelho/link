@@ -387,8 +387,8 @@ export default class LinkTool {
   showLinkPreview({ image, title, description }) {
     this.nodes.state = LinkTool.STATE.VIEW;
     this.nodes.container.appendChild(this.nodes.linkContent);
-    this.nodes.container.classList.add(this.CSS.containerView);
     this.nodes.container.classList.remove(this.CSS.containerEdit);
+    this.nodes.container.classList.add(this.CSS.containerView);
 
     if (image && image.url) {
       this.nodes.linkImage.style.backgroundImage = 'url(' + image.url + ')';
@@ -430,9 +430,9 @@ export default class LinkTool {
     this.nodes.state = LinkTool.STATE.EDIT;
     this.nodes.container.appendChild(this.nodes.inputHolder);
     this.nodes.container.classList.remove(this.CSS.containerLoaded);
-    this.nodes.progress.classList.remove(this.CSS.progressLoaded);
     this.nodes.container.classList.remove(this.CSS.containerView);
     this.nodes.container.classList.add(this.CSS.containerEdit);
+    this.nodes.progress.classList.remove(this.CSS.progressLoaded);
   }
 
 /**

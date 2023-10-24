@@ -443,6 +443,8 @@ export default class LinkTool {
     this.nodes.container.classList.remove(this.CSS.containerView);
     this.nodes.container.classList.add(this.CSS.containerEdit);
     this.nodes.progress.classList.remove(this.CSS.progressLoaded);
+
+    this.autofocusLinkInput();
   }
 
   /**
@@ -450,6 +452,26 @@ export default class LinkTool {
    */
   hideInputHolder() {
     this.nodes.container.removeChild(this.nodes.inputHolder);
+  }
+
+  /**
+   * Autofocus Link Input
+   */
+  autofocusLinkInput() {
+    // Move the cursor to the end of the div content
+    const range = document.createRange();
+    const sel = window.getSelection();
+
+    range.selectNodeContents(this.nodes.input);
+    range.collapse(false); // collapse range to the end
+    sel.removeAllRanges(); // remove any existing ranges
+    sel.addRange(range); // add new range at the end
+
+    // Close toolbar
+    this.api.toolbar.close();
+
+    // Focus on the text input
+    this.nodes.input.focus();
   }
 
   /**

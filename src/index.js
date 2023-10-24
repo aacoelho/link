@@ -444,6 +444,8 @@ export default class LinkTool {
     this.nodes.container.classList.add(this.CSS.containerEdit);
     this.nodes.progress.classList.remove(this.CSS.progressLoaded);
 
+    this.nodes.input.textContent = this.data.link;
+
     this.autofocusLinkInput();
   }
 

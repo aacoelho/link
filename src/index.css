@@ -29,6 +29,7 @@
 
     &-holder {
       position: relative;
+      z-index: 0;
 
       &--error {
         ^^& {

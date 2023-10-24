@@ -146,6 +146,10 @@
     }
   }
 
+  &__details {
+    margin-right: 48px;
+  }
+
   &__title {
     font-size: 16px;
     font-weight: 500;
@@ -172,7 +176,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-left: 48px;
+    margin-left: auto;
     width: 100%;
     height: 64px;
     max-width: 64px;

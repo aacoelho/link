@@ -109,17 +109,19 @@
     position: absolute;
     box-shadow: inset 0 1px 3px 0 rgba(102, 85, 107, 0.04);
     height: 100%;
-    width: 0;
+    width: 100%;
     background-color: #e5f2ff;
     z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left top;
 
     &--loading {
-      -webkit-animation: progress 500ms ease-in;
-      -webkit-animation-fill-mode: forwards;
+      transition: transform 500ms ease-in;
+      transform: scaleX(0.85);
     }
 
     &--loaded {
-      width: 100%;
+      transform: scaleX(1);
     }
   }
 
@@ -213,13 +215,4 @@
 
 .codex-editor--narrow .link-tool__image {
   display: none;
-}
-
-@-webkit-keyframes progress {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 85%;
-  }
 }

@@ -804,11 +804,6 @@
   "resolved" "https://registry.npmjs.org/@codexteam/ajax/-/ajax-4.1.0.tgz"
   "version" "4.1.0"
 
-"@codexteam/icons@^0.0.4":
-  "integrity" "sha512-V8N/TY2TGyas4wLrPIFq7bcow68b3gu8DfDt1+rrHPtXxcexadKauRJL6eQgfG7Z0LCrN4boLRawR4S9gjIh/Q=="
-  "resolved" "https://registry.npmjs.org/@codexteam/icons/-/icons-0.0.4.tgz"
-  "version" "0.0.4"
-
 "@types/color-name@^1.1.1":
   "integrity" "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
   "resolved" "https://registry.npmjs.org/@types/color-name/-/color-name-1.1.1.tgz"

@@ -42,7 +42,7 @@
     }
 
     &[contentEditable="true"][data-placeholder]::before {
-      position: absolute;
+      position: absolute !important;
       content: attr(data-placeholder);
       color: #5c6b7a;
       font-weight: normal;

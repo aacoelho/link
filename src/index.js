@@ -119,6 +119,12 @@ export default class LinkTool {
     };
 
     this.data = data;
+
+    this.linkContentClickEventListener = (event) => {
+      // Avoid opening link
+      event.preventDefault();
+      this.changeState(LinkTool.STATE.EDIT);
+    };
   }
 
   /**
@@ -411,6 +417,10 @@ export default class LinkTool {
 
     this.nodes.linkContent.classList.add(this.CSS.linkContentRendered);
     this.nodes.linkContent.setAttribute('href', this.data.link);
+
+    // Change to Edit state if button clicked
+    this.nodes.linkContent.addEventListener('click', this.linkContentClickEventListener);
+
     this.nodes.linkDetails.appendChild(this.nodes.linkText);
 
     try {
@@ -429,6 +439,9 @@ export default class LinkTool {
    * Remove link preview from fetched data
    */
   hideLinkPreview() {
+    // Remove the click event listener
+    this.nodes.linkContent.removeEventListener('click', this.linkContentClickEventListener);
+
     this.nodes.container.removeChild(this.nodes.linkContent);
   }
 
